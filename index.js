@@ -68,6 +68,12 @@ app.get("/movies", (req, res) => {
             description:
                 "A disaster film directed by Roland Emmerich that depicts a global cataclysmic event that threatens to destroy the world in 2012, based on the Mayan calendar.",
         },
+        {
+            title: "Coach Carter",
+            year: 2005,
+            description:
+                "A movie about a high school basketball coach, played by Samuel L. Jackson, who prioritizes education and discipline over basketball skills. He suspends the entire team when they fail to meet academic standards and faces backlash from the community. Despite the pressure, he helps the players realize their potential both on and off the court. The movie emphasizes the importance of education, hard work, and mentorship for underprivileged students.",
+        },
     ];
 
     // Return the JSON object containing data about the top 10 movies
