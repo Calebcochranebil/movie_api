@@ -18,5 +18,64 @@
             capabilities, the application shall empower users to curate a
             catalog of their preferred movies.
         </p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Request</th>
+                    <th>URL</th>
+                    <th>Response</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>GET</td>
+                    <td>/movies</td>
+                    <td>Returns a list of all movies in the database.</td>
+                </tr>
+                <tr>
+                    <td>GET</td>
+                    <td>/movies/:Title</td>
+                    <td>Returns details about a single movie, by title.</td>
+                </tr>
+                <tr>
+                    <td>GET</td>
+                    <td>/movies/genres/:Name</td>
+                    <td>Returns details about a genre, by name.</td>
+                </tr>
+                <tr>
+                    <td>POST</td>
+                    <td>/users</td>
+                    <td>Allows new users to register.</td>
+                </tr>
+                <tr>
+                    <td>GET</td>
+                    <td>/users/:Username</td>
+                    <td>Returns data about a user, by username.</td>
+                </tr>
+                <tr>
+                    <td>PUT</td>
+                    <td>/users/:Username</td>
+                    <td>
+                        Allows users to update their user information (username,
+                        password, email, date of birth).
+                    </td>
+                </tr>
+                <tr>
+                    <td>POST</td>
+                    <td>/users/:Username/movies/:MovieID</td>
+                    <td>
+                        Allows users to add a movie to their list of favorites.
+                    </td>
+                </tr>
+                <tr>
+                    <td>DELETE</td>
+                    <td>/users/:Username/movies/:MovieID</td>
+                    <td>
+                        Allows users to remove a movie from their list of
+                        favorites.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </body>
 </html>

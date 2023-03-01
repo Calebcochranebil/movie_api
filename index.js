@@ -1,7 +1,10 @@
 const express = require("express");
 const morgan = require("morgan");
+const bodyParser = require("body-parser");
 
 const app = express();
+
+app.use(bodyParser.json());
 
 // Use Morgan middleware to log all requests to the terminal
 app.use(morgan("dev"));
@@ -9,7 +12,7 @@ app.use(morgan("dev"));
 app.use(express.static("public"));
 
 app.get("/", (req, res) => {
-    res.send("Welcome to MyFlix");
+    res.send("Welcome to MyFlix!");
 });
 
 app.get("/movies", (req, res) => {
