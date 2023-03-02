@@ -25,54 +25,111 @@
                     <th>URL</th>
                     <th>Response</th>
                 </tr>
+                <thead>
+                    <tr>
+                        <th>Endpoint</th>
+                        <th>Description</th>
+                        <th>Method</th>
+                        <th>Query Parameters</th>
+                        <th>Request Body Format</th>
+                        <th>Example Request Body</th>
+                        <th>Response Data Format</th>
+                    </tr>
+                </thead>
             </thead>
             <tbody>
                 <tr>
-                    <td>GET</td>
                     <td>/movies</td>
                     <td>Returns a list of all movies in the database.</td>
+                    <td>GET</td>
+                    <td>None</td>
+                    <td>None</td>
+                    <td>N/A</td>
+                    <td>List of movie objects in JSON format.</td>
                 </tr>
                 <tr>
-                    <td>GET</td>
                     <td>/movies/:Title</td>
                     <td>Returns details about a single movie, by title.</td>
+                    <td>GET</td>
+                    <td>Title (string)</td>
+                    <td>None</td>
+                    <td>N/A</td>
+                    <td>Movie object in JSON format.</td>
                 </tr>
                 <tr>
-                    <td>GET</td>
                     <td>/movies/genres/:Name</td>
                     <td>Returns details about a genre, by name.</td>
+                    <td>GET</td>
+                    <td>Name (string)</td>
+                    <td>None</td>
+                    <td>N/A</td>
+                    <td>Genre object in JSON format.</td>
                 </tr>
                 <tr>
-                    <td>POST</td>
                     <td>/users</td>
                     <td>Allows new users to register.</td>
+                    <td>POST</td>
+                    <td>None</td>
+                    <td>
+                        User object in JSON format: { "Username": string,
+                        "Password": string, "Email": string, "DOB": string }
+                    </td>
+                    <td>
+                        { "Username": "johndoe", "Password": "password123",
+                        "Email": "johndoe@example.com", "DOB": "1990-01-01" }
+                    </td>
+                    <td>User object in JSON format.</td>
                 </tr>
                 <tr>
-                    <td>GET</td>
                     <td>/users/:Username</td>
                     <td>Returns data about a user, by username.</td>
+                    <td>GET</td>
+                    <td>Username (string)</td>
+                    <td>None</td>
+                    <td>N/A</td>
+                    <td>User object in JSON format.</td>
                 </tr>
                 <tr>
-                    <td>PUT</td>
                     <td>/users/:Username</td>
                     <td>
                         Allows users to update their user information (username,
                         password, email, date of birth).
                     </td>
+                    <td>PUT</td>
+                    <td>Username (string)</td>
+                    <td>
+                        User object in JSON format: { "Username": string,
+                        "Password": string, "Email": string, "DOB": string }
+                        (all fields optional)
+                    </td>
+                    <td>{ "Password": "newpassword123" }</td>
+                    <td>User object in JSON format.</td>
                 </tr>
                 <tr>
-                    <td>POST</td>
                     <td>/users/:Username/movies/:MovieID</td>
                     <td>
                         Allows users to add a movie to their list of favorites.
                     </td>
+                    <td>POST</td>
+                    <td>`Username`: string, `MovieID`: string</td>
+                    <td>N/A</td>
+                    <td>
+                        Status code: 201 - Created, 404 - Movie not found, 400 -
+                        Bad Request
+                    </td>
                 </tr>
                 <tr>
-                    <td>DELETE</td>
                     <td>/users/:Username/movies/:MovieID</td>
                     <td>
                         Allows users to remove a movie from their list of
                         favorites.
+                    </td>
+                    <td>DELETE</td>
+                    <td>`Username`: string, `MovieID`: string</td>
+                    <td>N/A</td>
+                    <td>
+                        Status code: 200 - OK, 404 - Movie not found, 400 - Bad
+                        Request
                     </td>
                 </tr>
             </tbody>
