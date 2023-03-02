@@ -31,7 +31,7 @@ app.get("/movies", (req, res) => {
                 Deathyear: "N/A",
             },
             imageUrl:
-                "https://upload.wikimedia.org/wikipedia/en/3/3d/The_Lion_King_poster.jpg",
+                "https://lumiere-a.akamaihd.net/v1/images/p_thelionking_19752_1_0b9de87b.jpeg",
             year: "1994",
             featured: true,
         },
@@ -52,7 +52,7 @@ app.get("/movies", (req, res) => {
                 Deathyear: "N/A",
             },
             imageUrl:
-                "https://upload.wikimedia.org/wikipedia/en/8/82/Joker_%282019_film%29.jpg",
+                "https://m.media-amazon.com/images/M/MV5BNGVjNWI4ZGUtNzE0MS00YTJmLWE0ZDctN2ZiYTk2YmI3NTYyXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg",
             year: "2019",
             featured: true,
         },
@@ -73,7 +73,7 @@ app.get("/movies", (req, res) => {
                 Deathyear: "N/A",
             },
             imageUrl:
-                "https://upload.wikimedia.org/wikipedia/en/2/2d/Pirates_of_the_Caribbean_Dead_Man%27s_Chest_Poster.jpg",
+                "https://m.media-amazon.com/images/M/MV5BNWY5NDEwMTctZmZhMS00MjBhLTkxM2MtZGM3ZWFiN2MxMTk0XkEyXkFqcGdeQXVyNTc0NjY1ODk@._V1_FMjpg_UX1000_.jpg",
             year: "2006",
             featured: true,
         },
@@ -94,7 +94,7 @@ app.get("/movies", (req, res) => {
                 Deathyear: "N/A",
             },
             imageUrl:
-                "https://upload.wikimedia.org/wikipedia/en/2/2e/Bohemian_Rhapsody_poster.png",
+                "https://m.media-amazon.com/images/M/MV5BMTA2NDc3Njg5NDVeQTJeQWpwZ15BbWU4MDc1NDcxNTUz._V1_FMjpg_UX1000_.jpg",
             year: "2018",
             featured: true,
         },
@@ -115,7 +115,7 @@ app.get("/movies", (req, res) => {
                 Deathyear: "N/A",
             },
             imageUrl:
-                "https://upload.wikimedia.org/wikipedia/en/9/9e/Ice_Age_4_Continental_Drift_poster.jpg",
+                "https://movieguide.b-cdn.net/wp-content/uploads/2012/08/ice-age-4-continental-drift.28912-768x1152.jpg",
             year: "2012",
             featured: true,
         },
@@ -135,8 +135,7 @@ app.get("/movies", (req, res) => {
                 Birthyear: "1951",
                 Deathyear: "N/A",
             },
-            imageUrl:
-                "https://upload.wikimedia.org/wikipedia/en/6/67/Forrest_Gump_poster.jpg",
+            imageUrl: "https://i.ytimg.com/vi/hf_lCA-T99c/movieposter_en.jpg",
             year: "1994",
             featured: true,
         },
@@ -156,7 +155,7 @@ app.get("/movies", (req, res) => {
                 Deathyear: "N/A",
             },
             imageUrl:
-                "https://upload.wikimedia.org/wikipedia/en/0/0a/Inside_Out_%282015_film%29_poster.jpg",
+                "https://lumiere-a.akamaihd.net/v1/images/p_insideout_19751_af12286c.jpeg?region=0%2C0%2C540%2C810",
             year: "2015",
             featured: true,
         },
@@ -177,7 +176,7 @@ app.get("/movies", (req, res) => {
                 Deathyear: "N/A",
             },
             imageUrl:
-                "https://upload.wikimedia.org/wikipedia/en/e/ed/Jumanji_The_Next_Level_poster.jpg",
+                "https://www.sonypictures.com/sites/default/files/styles/max_560x840/public/title-key-art/jumanjithenextlevel_onesheet_1400x2100.jpg?itok=1_kQc_Bz",
             year: "2019",
             featured: true,
         },
@@ -198,7 +197,7 @@ app.get("/movies", (req, res) => {
                 Deathyear: "N/A",
             },
             imageUrl:
-                "https://upload.wikimedia.org/wikipedia/en/thumb/d/dd/2012_Poster.jpg/220px-2012_Poster.jpg",
+                "https://static.wikia.nocookie.net/2012movie/images/5/50/2012_2009_2669_poster.jpg/revision/latest?cb=20160730140340s",
             year: "2009",
             featured: true,
         },
@@ -218,7 +217,7 @@ app.get("/movies", (req, res) => {
                 Deathyear: "N/A",
             },
             imageUrl:
-                "https://upload.wikimedia.org/wikipedia/en/thumb/d/d0/Coach_Carter_poster.jpg/220px-Coach_Carter_poster.jpg",
+                "https://occ.a.nflxso.net/dnm/api/v6/6gmvu2hxdfnQ55LZZjyzYR4kzGk/AAAABU-EAKhMkI0ARyGa0C7UZF5CFH2BtFedo2m0vgz04OnHtIwSgBs4zfZh7SPqAa4V6a__HlsOqQ8O86by6HNjmTY1jgt6SuSA-LXN.jpg?r=38c",
             year: "2005",
             featured: true,
         },
