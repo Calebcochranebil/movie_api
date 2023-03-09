@@ -1,9 +1,16 @@
-const express = require("express");
-const morgan = require("morgan");
 const bodyParser = require("body-parser");
+const express = require("express");
+const app = express();
+const morgan = require("morgan");
 const uuid = require("uuid");
 
-const app = express();
+const mongoose = require('mongoose');
+const Models = require('./models.js');
+
+const Movies = Models.Movie;
+const Users = Models.User;
+
+mongoose.connect('mongodb://localhost:27017/test', { useNewUrlParser: true, useUnifiedTopology: true });
 
 app.use(bodyParser.json());
 app.use(morgan("dev"));
@@ -99,7 +106,7 @@ const movies = [
         description:
             "Ice Age: Continental Drift is a 2012 American computer-animated adventure comedy film. It is the fourth installment in the Ice Age film series.",
         genre: {
-            name: "Animated comedy",
+            name: "Animation",
             description:
                 "A genre of film that uses animation to create humorous situations and characters.",
         },
@@ -138,7 +145,7 @@ const movies = [
         description:
             "Inside Out is a 2015 American computer-animated comedy-drama film produced by Pixar Animation Studios and released by Walt Disney Pictures. It is directed by Pete Docter and co-directed by Ronnie del Carmen.",
         genre: {
-            name: "Animated comedy-drama",
+            name: "Comedy-drama",
             description:
                 "A genre of film that uses animation to create humorous and emotional situations and characters.",
         },
@@ -194,71 +201,167 @@ const movies = [
         featured: true,
     },
     {
-        title: "Coach Carter",
+        title: "White House Down",
         description:
-            "Coach Carter is a 2005 American biographical sports drama film directed by Thomas Carter. It is based on the true story of Richmond High School basketball coach Ken Carter, who made headlines in 1999 for suspending his undefeated high school basketball team due to poor academic performance.",
-        genre: {
+            "U.S. Capitol Police officer, John Cale, teams up with the President of the United States to thwart a group of terrorists who have taken over the White House."        genre: {
             name: "Biographical sports drama",
             description:
                 "A genre of film that dramatizes the life of a real person involved in a sport, often with a focus on the challenges they faced and overcame.",
         },
+         genre: {
+            name: "Thriller",
+            description:
+                "A genre of film that depicts a catastrophic event or series of events that threaten human life and civilization.",
+        },
         director: {
-            name: "Thomas Carter",
-            bio: "Thomas Carter is an American film and television director, producer, and actor. He is best known for directing films such as Swing Kids, Save the Last Dance, and Coach Carter.",
-            Birthyear: "1953",
+            name: "Roland Emmerich",
+            bio: "Roland Emmerich is a German film director, producer, and screenwriter. He is best known for directing disaster films such as Independence Day, The Day After Tomorrow, and 2012.",
+            Birthyear: "1955",
             Deathyear: "N/A",
         },
         imageUrl:
-            "https://occ.a.nflxso.net/dnm/api/v6/6gmvu2hxdfnQ55LZZjyzYR4kzGk/AAAABU-EAKhMkI0ARyGa0C7UZF5CFH2BtFedo2m0vgz04OnHtIwSgBs4zfZh7SPqAa4V6a__HlsOqQ8O86by6HNjmTY1jgt6SuSA-LXN.jpg?r=38c",
-        year: "2005",
+            "https://www.sonypictures.com/sites/default/files/styles/max_560x840/public/chameleon/title-movie/357510_White_House_Down_2013_1400x2100_Eng.jpg?itok=x65eFTLe",
+        year: "2013",
         featured: true,
     },
 ];
 
-app.get("/movies", (req, res) => {
-    res.send("Welcome to MyFHere are the top 10 movies!");
-    res.json({ movies });
+app.get('/movies', (req, res) => {
+  Movies.find()
+    .then(movies => {
+      res.status(200).json(movies);
+    })
+    .catch(error => {
+      console.error(error);
+      res.status(500).send('Error: ' + error);
+    });
 });
 
-app.get("/movies/:title", (req, res) => {
-    const title = req.params.title;
-    res.send(`Here's the information for the movie "${title}"!`);
+app.get('/movies/:title', (req, res) => {
+  Movies.findOne({ title: req.params.title })
+    .then(movie => {
+      if (!movie) {
+        return res.status(404).send(`Movie with title ${req.params.title} was not found.`);
+      }
+      res.status(200).json(movie);
+    })
+    .catch(error => {
+      console.error(error);
+      res.status(500).send('Error: ' + error);
+    });
 });
 
-app.get("/genres", (req, res) => {
-    res.send("Here are the available genres!");
+app.get('/genres', (req, res) => {
+  Genres.find()
+    .then(genres => {
+      res.status(200).json(genres);
+    })
+    .catch(error => {
+      console.error(error);
+      res.status(500).send('Error: ' + error);
+    });
 });
 
-app.get("/directors", (req, res) => {
-    res.send("Here are the available directors!");
+app.get('/directors', (req, res) => {
+  Directors.find()
+    .then(directors => {
+      res.status(200).json(directors);
+    })
+    .catch(error => {
+      console.error(error);
+      res.status(500).send('Error: ' + error);
+    });
 });
 
-app.get("/users", (req, res) => {
-    res.send("Here are the registered users!");
+app.get('/users', (req, res) => {
+  Users.find()
+    .then(users => {
+      res.status(200).json(users);
+    })
+    .catch(error => {
+      console.error(error);
+      res.status(500).send('Error: ' + error);
+    });
 });
 
-app.post("/users", (req, res) => {
-    const { username, password, email, birthday } = req.body;
-    res.send(`Welcome, ${username}! You've successfully registered.`);
+app.post('/users', (req, res) => {
+  Users.findOne({ Username: req.body.Username })
+    .then(user => {
+      if (user) {
+        return res.status(400).send(`${req.body.Username} already exists.`);
+      }
+      Users.create(req.body)
+        .then(user => {
+          res.status(201).json(user);
+        })
+        .catch(error => {
+          console.error(error);
+          res.status(500).send('Error: ' + error);
+        });
+    })
+    .catch(error => {
+      console.error(error);
+      res.status(500).send('Error: ' + error);
+    });
 });
 
-app.put("/users/:username", (req, res) => {
-    const username = req.params.username;
-    res.send(`Your account information has been updated, ${username}!`);
+app.put('/users/:Username', (req, res) => {
+  Users.findOneAndUpdate({ Username: req.params.Username }, { $set: req.body }, { new: true })
+    .then(updatedUser => {
+      if (!updatedUser) {
+        return res.status(404).send(`User with username ${req.params.Username} was not found.`);
+      }
+      res.json(updatedUser);
+    })
+    .catch(error => {
+      console.error(error);
+      res.status(500).send('Error: ' + error);
+    });
 });
 
-app.post("/users/:username/favorites/:movieId", (req, res) => {
-    const { username, movieId } = req.params;
-    res.send(
-        `The movie with ID ${movieId} has been added to ${username}'s favorites.`
-    );
+app.post('/users/:Username/movies/:MovieID', (req, res) => {
+  Users.findOneAndUpdate({ Username: req.params.Username }, { $addToSet: { FavoriteMovies: req.params.MovieID } }, { new: true })
+    .then(updatedUser => {
+      if (!updatedUser) {
+        return res.status(404).send(`User with username ${req.params.Username} was not found.`);
+      }
+      res.json(updatedUser);
+    })
+    .catch(error => {
+      console.error(error);
+      res.status(500).send('Error: ' + error);
+    });
+});
+
+app.delete('/users/:username', (req, res) => {
+  Users.findOneAndDelete({ Username: req.params.username })
+    .then((user) => {
+      if (!user) {
+        res.status(404).send(req.params.username + ' was not found');
+      } else {
+        res.status(200).send(req.params.username + ' was deleted.');
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send('Error: ' + err);
+    });
 });
 
 app.delete("/users/:username/favorites/:movieId", (req, res) => {
-    const { username, movieId } = req.params;
-    res.send(
-        `The movie with ID ${movieId} has been removed from ${username}'s favorites.S`
-    );
+  const { username, movieId } = req.params;
+  Users.findOneAndUpdate({ Username: username }, { $pull: { FavoriteMovies: movieId } }, { new: true })
+    .then((updatedUser) => {
+      if (!updatedUser) {
+        res.status(404).send(username + ' was not found');
+      } else {
+        res.status(200).send(`The movie with ID ${movieId} has been removed from ${username}'s favorites.`);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send('Error: ' + err);
+    });
 });
 
 app.use((err, req, res, next) => {
