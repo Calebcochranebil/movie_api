@@ -1,23 +1,29 @@
 const mongoose = require("mongoose");
 
-let movieSchema = new Schema({
+const Schema = mongoose.Schema;
+
+// Define movie schema
+const movieSchema = new Schema({
     title: { type: String, required: true },
     description: { type: String, required: true },
-    genre: {
-        name: String,
-        description: String,
-    },
+    genre: [
+        {
+            name: String,
+            description: String,
+        },
+    ],
     director: {
         name: String,
         bio: String,
-        birthyear: Number,
-        deathyear: Number,
+        birthYear: Number,
+        deathYear: Number,
     },
-    imagePath: String,
+    imageUrl: String,
     year: Number,
     featured: Boolean,
 });
 
+// Define user schema
 let userSchema = mongoose.Schema({
     Username: { type: String, required: true },
     Password: { type: String, required: true },
